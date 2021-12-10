@@ -1,7 +1,7 @@
 <div>
   <div>
     <h1>
-      List of all photos
+      List of photos
     </h1>
   </div>
 </div>
@@ -10,54 +10,39 @@
 
 <div>
   <div>
-    <h2>
-      Add a new photo
-    </h2>
-
     <form action="/insert_photo" method="post">
+      
       <div>
-        <label for="caption_box">
-          Caption
-        </label>
+        <label for="browser_input">Image</label>
+  <input id="browser_input" type="file" name="query_image" placeholder="Enter a URL for the image...">
 
-        <textarea id="caption_box" name="query_caption" rows="3"></textarea>
-      </div>
+  <label for="browser_caption">Caption</label>
+  <textarea id="browser_caption" name="query_caption" placeholder="Enter a caption for the photo..."></textarea>
 
-      <div>
+
         <label for="comments_count_box">
-          Comments count
+       
         </label>
 
-        <input type="text" id="comments_count_box" name="query_comments_count">
-      </div>
-
-      <div>
-        <label for="image_box">
-          Image
-        </label>
-
-        <input type="text" id="image_box" name="query_image">
-      </div>
-
-      <div>
+        <input type="hidden" id="comments_count_box" name="query_comments_count">
+    
         <label for="likes_count_box">
-          Likes count
+      
         </label>
 
-        <input type="text" id="likes_count_box" name="query_likes_count">
-      </div>
+        <input type="hidden" id="likes_count_box" name="query_likes_count">
 
-      <div>
         <label for="owner_id_box">
-          Owner
+        
         </label>
 
-        <input type="text" id="owner_id_box" name="query_owner_id">
+        <input type="hidden" id="owner_id_box" name="query_owner_id">
+            <button>
+        Add photo
+      </button>
       </div>
 
-      <button>
-        Create photo
-      </button>
+
     </form>
   </div>
 </div>
@@ -65,10 +50,10 @@
 <hr>
 <div>
   <div>
-    <table>
+    <table border ="1">
       <tr>
         <th>
-          ID
+          Image
         </th>
 
         <th>
@@ -76,37 +61,27 @@
         </th>
 
         <th>
-          Comments count
-        </th>
-
-        <th>
-          Image
-        </th>
-
-        <th>
-          Likes count
-        </th>
-
-        <th>
           Owner
         </th>
 
         <th>
-          Created at
+          Posted
         </th>
 
         <th>
-          Updated at
+          Likes
         </th>
 
         <th>
+          
         </th>
+
       </tr>
 
       <% @list_of_photos.each do |a_photo| %>
       <tr>
         <td>
-          <%= a_photo.id %>
+          <%= a_photo.image %>
         </td>
 
         <td>
@@ -114,26 +89,15 @@
         </td>
 
         <td>
-          <%= a_photo.comments_count %>
-        </td>
-
-        <td>
-          <%= a_photo.image %>
-        </td>
-
-        <td>
-          <%= a_photo.likes_count %>
-        </td>
-
-        <td>
-          <%= a_photo.owner_id %>
+          <%= a_photo.poster_username %>
         </td>
 
         <td>
           <%= time_ago_in_words(a_photo.created_at) %> ago
         </td>
+
         <td>
-          <%= time_ago_in_words(a_photo.updated_at) %> ago
+          <%= a_photo.likes_count %>
         </td>
 
         <td>
