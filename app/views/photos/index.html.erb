@@ -6,13 +6,12 @@
   </div>
 </div>
 
-<hr>
+<% if @current_user ==nil %>
 
-<div>
-  <div>
+<% else %>
     <form action="/insert_photo" method="post">
       
-      <div>
+ 
         <label for="browser_input">Image</label>
   <input id="browser_input" type="file" name="query_image" placeholder="Enter a URL for the image...">
 
@@ -36,16 +35,12 @@
         
         </label>
 
-        <input type="hidden" id="owner_id_box" name="query_owner_id">
-            <button>
+        <input type="hidden" id="owner_id_box" name="query_owner_id" value="<%=@current_user.id%>" >
+      <button>
         Add photo
       </button>
-      </div>
-
-
-    </form>
-  </div>
-</div>
+      </form>
+<% end %>
 
 <hr>
 <div>
@@ -81,7 +76,7 @@
       <% @list_of_photos.each do |a_photo| %>
       <tr>
         <td>
-          <%= a_photo.image %>
+          <img src="<%=a_photo.image%>">
         </td>
 
         <td>

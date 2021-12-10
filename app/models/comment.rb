@@ -17,6 +17,11 @@ class Comment < ApplicationRecord
     return User.where({ :id => self.author_id }).at(0)
   end
 
+  def commenter_username
+    usern = User.where({ :id => self.author_id }).at(0)
+    return usern.username
+  end
+
   def photo
     return Photo.where({ :id => self.photo_id }).at(0)
   end
